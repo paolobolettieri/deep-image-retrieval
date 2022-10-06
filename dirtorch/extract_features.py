@@ -93,6 +93,7 @@ if __name__ == '__main__':
     parser.add_argument('--out-json', type=str, default="", help='path to output json')
     parser.add_argument('--detailed', action='store_true', help='return detailed evaluation')
     parser.add_argument('--output', type=str, default="", help='path to output features')
+    parser.add_argument('--batch_size', type=int, default=16, help='batch size')
 
     parser.add_argument('--threads', type=int, default=8, help='number of thread workers')
     parser.add_argument('--gpu', type=int, nargs='+', help='GPU ids')
@@ -120,7 +121,7 @@ if __name__ == '__main__':
         args.whiten = None
 
     # Evaluate
-    res = extract_features(dataset, net, args.trfs, pooling=args.pooling, gemp=args.gemp, detailed=args.detailed,
+    res = extract_features(dataset, net, args.trfs, pooling=args.pooling, batch_size=args.batch_size, gemp=args.gemp, detailed=args.detailed,
                            threads=args.threads, dbg=args.dbg, whiten=args.whiten, output=args.output)
 
 
